@@ -1,12 +1,10 @@
 <script>
-    import { onMount } from "svelte";
+    // Imports
+    import { navigate } from "svelte-routing";
     import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-    import { auth } from "../../firebase";
-    import { user } from "../../stores";
-    import { from } from "rxjs";
-    import { switchMap } from "rxjs/operators";
-    import { collectionData } from "rxfire/firestore";
-    import { db } from "../../firebase";
+    import { auth, db } from "../../firebase";
+
+    export let location;
 
     const provider = new GoogleAuthProvider();
 
@@ -17,30 +15,25 @@
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
             const user = result.user;
-            console.log("User logged in:", user);
+
+            console.log("User logged in with Google:", user);
+
+            // Redirect to dashboard
+            navigate("/dashboard");
+            localStorage.setItem("webmarks-last-route", "/dashboard");
         } catch (error) {
             console.error("Error while logging in with Google:", error);
-        }
-    };
-
-    // This function logs out the user
-    const logout = async () => {
-        try {
-            await auth.signOut();
-            console.log("User logged out");
-        } catch (error) {
-            console.error("Error while logging out:", error);
         }
     };
 </script>
 
 <div class="container">
-    {#if $user}
-        <p>Hello, {$user.displayName}! You are logged in.</p>
-        <button on:click={logout}>Logout</button>
-    {:else}
+    {#if !auth.currentUser}
         <p>Welcome to the Webmarks app! Please log in to continue.</p>
         <button on:click={loginWithGoogle}>Log in with Google</button>
+    {:else}
+        <p>Welcome back, {auth.currentUser.displayName}!</p>
+        <button on:click={() => navigate("/dashboard")}>Go to dashboard</button>
     {/if}
 </div>
 

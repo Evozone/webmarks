@@ -1,36 +1,47 @@
 <script>
-    import { Router, Route } from "svelte-routing";
+    import { onMount } from "svelte";
+    import { Router, Route, navigate } from "svelte-routing";
+    import ProtectedRoute from "./lib/ProtectedRoute.svelte";
+
+    // Firebase
+    import { auth } from "./firebase.js";
+
+    // Routes
     import Context from "./lib/routes/Context.svelte";
     import Dashboard from "./lib/routes/Dashboard.svelte";
     import Home from "./lib/routes/Home.svelte";
+
+    // Store
+    import { user } from "./stores";
+
+    // Handle wildcard routes
+    onMount(() => {
+        const path = window.location.pathname;
+        if (path !== "/" && path !== "/dashboard" && path !== "/context") {
+            navigate("/", { replace: true });
+        }
+    });
 </script>
 
 <Router>
-    <Route path="/">
-        <Home />
-    </Route>
-    <Route path="/dashboard">
-        <Dashboard />
-    </Route>
-    <Route path="/context/:id">
-        <Context />
-    </Route>
+    <Route path="/" component={Home} />
+    <ProtectedRoute path="/dashboard" component={Dashboard} />
+    <ProtectedRoute path="/context" component={Context} />
 </Router>
 
 <style>
-    .logo {
-        height: 6em;
-        padding: 1.5em;
-        will-change: filter;
-        transition: filter 300ms;
+    :global(body) {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+            "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+            "Helvetica Neue", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
-    .logo:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-    }
-    .logo.svelte:hover {
-        filter: drop-shadow(0 0 2em #ff3e00aa);
-    }
-    .read-the-docs {
-        color: #888;
+
+    :global(code) {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+            monospace;
     }
 </style>

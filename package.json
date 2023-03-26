@@ -16,6 +16,7 @@
   "dependencies": {
     "firebase": "^9.18.0",
     "rxfire": "^6.0.3",
-    "svelte-routing": "^1.6.0"
+    "svelte-routing": "^1.6.0",
+    "svelte-store": "^0.0.2"
   }
 }

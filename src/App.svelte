@@ -1,24 +1,29 @@
 <script>
     import { onMount } from "svelte";
     import { Router, Route, navigate } from "svelte-routing";
+    import { auth } from "./firebase";
     import ProtectedRoute from "./lib/ProtectedRoute.svelte";
-
-    // Firebase
-    import { auth } from "./firebase.js";
 
     // Routes
     import Context from "./lib/routes/Context.svelte";
     import Dashboard from "./lib/routes/Dashboard.svelte";
     import Home from "./lib/routes/Home.svelte";
 
-    // Store
-    import { user } from "./stores";
+    // JavaScript
+    const routes = ["/", "/dashboard", "/context"];
 
     // Handle wildcard routes
     onMount(() => {
         const path = window.location.pathname;
-        if (path !== "/" && path !== "/dashboard" && path !== "/context") {
-            navigate("/", { replace: true });
+
+        if (!routes.includes(path)) {
+            // If user is logged in, redirect to dashboard
+            console.log(auth.currentUser);
+            if (auth.currentUser) {
+                navigate("/dashboard");
+            } else {
+                navigate("/");
+            }
         }
     });
 </script>

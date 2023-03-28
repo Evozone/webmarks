@@ -1,12 +1,19 @@
 <script>
     // Imports
+    import { onMount } from "svelte";
     import { navigate } from "svelte-routing";
     import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+    import { collection, addDoc } from "firebase/firestore";
     import { auth, db } from "../../firebase";
+    import { loggedInUser } from "../../stores";
+    import Loading from "../components/Loading.svelte";
 
+    // Exports
     export let location;
 
+    // JavaScript
     const provider = new GoogleAuthProvider();
+    let showLoading = true;
 
     // This function logs in the user using the Google authentication provider
     const loginWithGoogle = async () => {
@@ -18,22 +25,58 @@
 
             console.log("User logged in with Google:", user);
 
+            // Create user in database
+            await createUser(user);
+
+            // Set the user in the store
+            loggedInUser.set(user);
+
             // Redirect to dashboard
             navigate("/dashboard");
-            localStorage.setItem("webmarks-last-route", "/dashboard");
         } catch (error) {
             console.error("Error while logging in with Google:", error);
         }
     };
+
+    // This function creates a new user in the database
+    const createUser = async (user) => {
+        try {
+            await addDoc(collection(db, "users"), {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                createdAt: new Date(),
+            });
+        } catch (error) {
+            console.error("Error while creating user:", error);
+        }
+    };
+
+    // This function is called when the component is mounted
+    onMount(async () => {
+        // Wait for 500ms
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        // Hide the loading screen
+        showLoading = false;
+    });
 </script>
 
 <div class="container">
-    {#if !auth.currentUser}
-        <p>Welcome to the Webmarks app! Please log in to continue.</p>
-        <button on:click={loginWithGoogle}>Log in with Google</button>
+    {#if showLoading}
+        <Loading />
     {:else}
-        <p>Welcome back, {auth.currentUser.displayName}!</p>
-        <button on:click={() => navigate("/dashboard")}>Go to dashboard</button>
+        <main>
+            <div class="card">
+                <h1>Welcome to WebMarks</h1>
+                <p>
+                    This is a simple SvelteKit app that uses Firebase for
+                    authentication and database.
+                </p>
+                <button on:click={loginWithGoogle}>Login with Google</button>
+            </div>
+        </main>
     {/if}
 </div>
 

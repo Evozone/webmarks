@@ -1,5 +1,6 @@
 <script>
     export let location;
+    export let id;
 </script>
 
 <div>

@@ -9,29 +9,49 @@
     import Dashboard from "./lib/routes/Dashboard.svelte";
     import Home from "./lib/routes/Home.svelte";
 
-    // JavaScript
-    const routes = ["/", "/dashboard", "/context"];
+    // Stores
+    import { loggedInUser } from "./stores";
 
-    // Handle wildcard routes
-    onMount(() => {
-        const path = window.location.pathname;
+    let isAuthenticated = false;
 
-        if (!routes.includes(path)) {
-            // If user is logged in, redirect to dashboard
-            console.log(auth.currentUser);
-            if (auth.currentUser) {
-                navigate("/dashboard");
+    onMount(async () => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            loggedInUser.set(user);
+
+            if (!user) {
+                if (window.location.pathname !== "/") {
+                    navigate("/");
+                }
             } else {
-                navigate("/");
+                if (window.location.pathname === "/") {
+                    navigate("/dashboard");
+                } else {
+                    // If the path is either /dashboard or /context/:id
+                    if (
+                        !window.location.pathname.match(
+                            /\/dashboard|\/context\/\w+/
+                        )
+                    ) {
+                        navigate("/dashboard");
+                    }
+                }
             }
-        }
+        });
+
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        isAuthenticated = $loggedInUser !== null;
+
+        return unsubscribe;
     });
 </script>
 
 <Router>
     <Route path="/" component={Home} />
-    <ProtectedRoute path="/dashboard" component={Dashboard} />
-    <ProtectedRoute path="/context" component={Context} />
+    {#if isAuthenticated}
+        <ProtectedRoute path="/dashboard" component={Dashboard} />
+        <ProtectedRoute path="/context/:id" component={Context} />
+    {/if}
 </Router>
 
 <style>

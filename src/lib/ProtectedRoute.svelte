@@ -1,13 +1,13 @@
 <script>
-    import { Route, navigate } from "svelte-routing";
-    import { user } from "../stores";
+    import { Route } from "svelte-routing";
+    import { loggedInUser } from "../stores";
 
     import Home from "./routes/Home.svelte";
 
     export let path;
     export let component;
 
-    $: isAuthenticated = $user;
+    $: isAuthenticated = $loggedInUser !== null;
 </script>
 
 {#if isAuthenticated}

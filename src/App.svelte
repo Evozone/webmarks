@@ -9,7 +9,9 @@
 </script>
 
 <Router>
-    <Route path="/" component={Home} />
+    <Route path="/">
+        <Home location="/" />
+    </Route>
     <Route path="/dashboard">
         <ProtectedRoute component={Dashboard} />
     </Route>

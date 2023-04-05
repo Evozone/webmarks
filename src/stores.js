@@ -10,7 +10,6 @@ export const loggedInUser = writable(null, function start(set) {
         }
     });
 
-
     return function stop() {
         unsubscribe();
     };

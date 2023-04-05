@@ -13,10 +13,10 @@
         <Home location="/" />
     </Route>
     <Route path="/dashboard">
-        <ProtectedRoute component={Dashboard} />
+        <ProtectedRoute component={Dashboard} id={null} />
     </Route>
-    <Route path="/context/:id">
-        <ProtectedRoute component={Context} />
+    <Route path="/context/:id" let:params>
+        <ProtectedRoute component={Context} id={params.id} />
     </Route>
 </Router>
 

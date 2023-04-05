@@ -22,6 +22,9 @@
     <p>Dashboard content goes here</p>
 
     <button on:click={logout}>Log out</button>
+
+    <!-- Go to contexts -->
+    <a href="/context/123">Go to contexts</a>
 </div>
 
 <style>

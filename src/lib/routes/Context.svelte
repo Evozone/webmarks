@@ -6,6 +6,10 @@
 <div>
     <h1>Contexts</h1>
     <p>Context content goes here</p>
+
+    <!-- Go back to dashboard -->
+
+    <a href="/dashboard">Go back to dashboard</a>
 </div>
 
 <style>

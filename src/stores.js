@@ -1,16 +1,26 @@
 import { writable } from "svelte/store";
-import { auth } from "./firebase";
+import jwt_decode from "jwt-decode";
 
-export const loggedInUser = writable(null, function start(set) {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user) {
-            set(user);
-        } else {
-            set(null);
-        }
-    });
+export const createloggedInUser = () => {
+  // Create a store with a value of null
+  const { subscribe, set, update } = writable(null);
 
-    return function stop() {
-        unsubscribe();
-    };
-});
+  // Create a login function
+  const login = (token) => {
+    // Decode the token
+    const decoded = jwt_decode(JSON.parse(token));
+    // Set the store value to the decoded token
+    set(decoded);
+  };
+
+  // Return the store
+  return {
+    subscribe,
+    set,
+    update,
+    login,
+  };
+};
+
+// Create the store
+export const loggedInUser = createloggedInUser();

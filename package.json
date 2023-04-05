@@ -19,6 +19,7 @@
   "dependencies": {
     "daisyui": "^2.51.5",
     "firebase": "^9.18.0",
+    "jwt-decode": "^3.1.2",
     "rxfire": "^6.0.3",
     "svelte-routing": "^1.6.0",
     "svelte-store": "^0.0.2"

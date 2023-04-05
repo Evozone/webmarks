@@ -1,7 +1,7 @@
 <script>
     import { Router, Route } from "svelte-routing";
     import ProtectedRoute from "./lib/ProtectedRoute.svelte";
-
+    import "../app.css";
     // Routes
     import Context from "./lib/routes/Context.svelte";
     import Dashboard from "./lib/routes/Dashboard.svelte";

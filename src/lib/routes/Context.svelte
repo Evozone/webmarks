@@ -4,7 +4,7 @@
 </script>
 
 <div>
-    <h1>Contexts</h1>
+    <h1>Context {id}</h1>
     <p>Context content goes here</p>
 
     <!-- Go back to dashboard -->

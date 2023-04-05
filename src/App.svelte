@@ -1,7 +1,6 @@
 <script>
     import { Router, Route } from "svelte-routing";
     import ProtectedRoute from "./lib/ProtectedRoute.svelte";
-    import "../app.css";
     // Routes
     import Context from "./lib/routes/Context.svelte";
     import Dashboard from "./lib/routes/Dashboard.svelte";
@@ -13,10 +12,10 @@
         <Home location="/" />
     </Route>
     <Route path="/dashboard">
-        <ProtectedRoute component={Dashboard} />
+        <ProtectedRoute component={Dashboard} id={null} />
     </Route>
-    <Route path="/context/:id">
-        <ProtectedRoute component={Context} />
+    <Route path="/context/:id" let:params>
+        <ProtectedRoute component={Context} id={params.id} />
     </Route>
 </Router>
 

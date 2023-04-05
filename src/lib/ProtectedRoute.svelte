@@ -1,5 +1,6 @@
 <script>
-    import { Route } from "svelte-routing";
+    import { onMount } from "svelte";
+    import { navigate } from "svelte-routing";
     import { loggedInUser } from "../stores";
 
     import Home from "./routes/Home.svelte";
@@ -8,6 +9,13 @@
     export let id;
 
     $: isAuthenticated = $loggedInUser !== null;
+
+    onMount(() => {
+        // If user is not logged in, redirect to home page
+        if (!isAuthenticated) {
+            navigate("/");
+        }
+    });
 </script>
 
 {#if isAuthenticated}

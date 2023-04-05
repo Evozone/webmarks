@@ -1,6 +1,9 @@
 <script>
     // Imports
     import { onMount } from "svelte";
+    import { navigate } from "svelte-routing";
+    import { loggedInUser } from "../../stores";
+
     import GoogleLoginButton from "../components/GoogleLoginButton.svelte";
 
     // Exports
@@ -8,6 +11,15 @@
 
     // JavaScript
     let showLoading = true;
+
+    onMount(() => {
+        // If user is logged in, redirect to dashboard
+        if ($loggedInUser !== null) {
+            navigate("/dashboard");
+        } else {
+            showLoading = false;
+        }
+    });
 </script>
 
 <div class="container">

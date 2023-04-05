@@ -4,14 +4,13 @@
 
     import Home from "./routes/Home.svelte";
 
-    export let path;
     export let component;
 
     $: isAuthenticated = $loggedInUser !== null;
 </script>
 
 {#if isAuthenticated}
-    <Route {path} {component} />
+    <svelte:component this={component} />
 {:else}
-    <Route {path} component={Home} />
+    <svelte:component this={Home} location="/" />
 {/if}

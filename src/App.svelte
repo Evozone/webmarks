@@ -1,57 +1,21 @@
 <script>
-    import { onMount } from "svelte";
-    import { Router, Route, navigate } from "svelte-routing";
-    import { auth } from "./firebase";
+    import { Router, Route } from "svelte-routing";
     import ProtectedRoute from "./lib/ProtectedRoute.svelte";
 
     // Routes
     import Context from "./lib/routes/Context.svelte";
     import Dashboard from "./lib/routes/Dashboard.svelte";
     import Home from "./lib/routes/Home.svelte";
-
-    // Stores
-    import { loggedInUser } from "./stores";
-
-    let isAuthenticated = false;
-
-    onMount(async () => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            loggedInUser.set(user);
-
-            if (!user) {
-                if (window.location.pathname !== "/") {
-                    navigate("/");
-                }
-            } else {
-                if (window.location.pathname === "/") {
-                    navigate("/dashboard");
-                } else {
-                    // If the path is either /dashboard or /context/:id
-                    if (
-                        !window.location.pathname.match(
-                            /\/dashboard|\/context\/\w+/
-                        )
-                    ) {
-                        navigate("/dashboard");
-                    }
-                }
-            }
-        });
-
-        await new Promise((resolve) => setTimeout(resolve, 500));
-
-        isAuthenticated = $loggedInUser !== null;
-
-        return unsubscribe;
-    });
 </script>
 
 <Router>
     <Route path="/" component={Home} />
-    {#if isAuthenticated}
-        <ProtectedRoute path="/dashboard" component={Dashboard} />
-        <ProtectedRoute path="/context/:id" component={Context} />
-    {/if}
+    <Route path="/dashboard">
+        <ProtectedRoute component={Dashboard} />
+    </Route>
+    <Route path="/context/:id">
+        <ProtectedRoute component={Context} />
+    </Route>
 </Router>
 
 <style>

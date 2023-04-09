@@ -8,7 +8,7 @@
 </script>
 
 <!-- Navbar -->
-<Navbar path="/dashboard" />
+<Navbar path="/create" />
 
 <main class="min-h-screen p-10">
     <!-- Page title -->
@@ -27,18 +27,13 @@
             class="border-dashed border-4 p-8 mx-auto grid grid-cols-3 gap-4 rounded-xl"
         >
             <div class="col-span-3">
-                <h2 class="text-3xl font-bold text-center">
-                    Create a new context
-                </h2>
+                <h2 class="text-3xl font-bold text-center">Create a context</h2>
             </div>
-            <div class="col-span-3 flex justify-center items-center">
+            <div class="col-span-3">
                 <button
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    on:click={() => {
-                        location = "/create";
-                    }}
                 >
-                    Create
+                    +
                 </button>
             </div>
         </div>

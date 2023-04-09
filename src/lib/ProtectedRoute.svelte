@@ -19,7 +19,7 @@
 </script>
 
 {#if isAuthenticated}
-    <svelte:component this={component} {id} />
+    <svelte:component this={component} {id} location={null} />
 {:else}
     <svelte:component this={Home} location="/" />
 {/if}

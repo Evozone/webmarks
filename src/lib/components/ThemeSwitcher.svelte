@@ -2,6 +2,10 @@
     import { onMount } from "svelte";
     import { themeChange } from "theme-change";
 
+    // Icons
+    import Icon from "svelte-icons-pack/Icon.svelte";
+    import BsFlower1 from "svelte-icons-pack/bs/BsFlower1";
+
     // Store
     import { selectedTheme } from "../../stores";
 
@@ -14,29 +18,32 @@
     });
 
     const themes = {
-        lavender: {
+        default: {
             name: "default",
-            displayName: "Lavender",
+            icon: "🌼",
+            displayName: "Default",
         },
         light: {
             name: "light",
+            icon: "🌞",
             displayName: "Light",
         },
         dark: {
             name: "dark",
+            icon: "🌙",
             displayName: "Dark",
         },
         cupcake: {
             name: "cupcake",
+            icon: "🧁",
             displayName: "Cupcake",
         },
         lemonade: {
             name: "lemonade",
+            icon: "🍋",
             displayName: "Lemonade",
         },
     };
-
-    $selectedTheme = themes[0].value;
 
     const handleChangeTheme = (e) => {
         const newTheme = e.target.value;
@@ -44,13 +51,25 @@
     };
 </script>
 
-<div class="flex flex-row items-center" />
+<div class="flex flex-row items-center">
+    <div class="p-2">{themes[theme].icon}</div>
+
+    <!-- Select theme -->
+    <div class="grow">
+        <select
+            data-choose-theme
+            class="select select-primary w-full"
+            value={theme}
+            on:change={handleChangeTheme}
+        >
+            <!-- <option value="lavender">Lavender</option> -->
+            <!-- iterate over all themes -->
+            {#each Object.keys(themes) as themeKey}
+                <option value={themeKey}>{themes[themeKey].displayName}</option>
+            {/each}
+        </select>
+    </div>
+</div>
 
 <style>
-    .theme-switcher {
-        position: fixed;
-        top: 0;
-        right: 0;
-        z-index: 1000;
-    }
 </style>

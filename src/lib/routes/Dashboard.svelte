@@ -12,8 +12,9 @@
 
 <main class="min-h-screen p-10">
     <!-- Page title -->
-    <h1 class="text-5xl font-bold text-center p-8">Dashboard</h1>
-    <!-- Go to contexts -->
+    <h1 class="text-5xl font-bold text-center mb-20">Dashboard</h1>
+
+    <!-- Grid of contexts -->
     <div
         class="border-dashed border-4 p-8 mx-auto grid grid-cols-3 gap-4 rounded-xl"
     >
@@ -24,24 +25,22 @@
 
         <!-- Create a context -->
         <div
-            class="border-dashed border-4 p-8 mx-auto grid grid-cols-3 gap-4 rounded-xl"
+            class="col-span-3 w-full border-dotted border-2 p-7 mx-auto flex flex-col items-center rounded-xl"
         >
-            <div class="col-span-3">
-                <h2 class="text-3xl font-bold text-center">
-                    Create a new context
-                </h2>
-            </div>
-            <div class="col-span-3 flex justify-center items-center">
-                <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    on:click={() => {
-                        location = "/create";
-                    }}
-                >
-                    Create
-                </button>
-            </div>
+            <h2 class="text-3xl font-bold text-center mb-3">
+                Create a new context
+            </h2>
+            <!-- Round button with Plus -->
+            <button
+                class="rounded-full w-16 h-16 bg-blue-500 text-white text-3xl font-bold"
+                on:click={() => {
+                    location = "/context/:id";
+                }}
+            >
+                +
+            </button>
         </div>
+        <!-- End:Create a context -->
     </div>
 </main>
 

@@ -2,8 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme css variables */
+html[data-theme="dark"] {
+    --bg-image: url("./assets/sprinkle-dark.svg");
+    --bg-base: #1f2937;
+}
+
+html[data-theme="light"] {
+    --bg-image: url("./assets/sprinkle-light.svg");
+    --bg-base: #f9fafb;
+}
+
+html[data-theme="default"] {
+    --bg-image: url("./assets/sprinkle-default.svg");
+    --bg-base: #f0abfc;
+}
+
+html[data-theme="cupcake"] {
+    --bg-image: url("./assets/sprinkle-default.svg");
+    --bg-base: #f72585;
+}
+
+html[data-theme="lemonade"] {
+    --bg-image: url("./assets/sprinkle-default.svg");
+    --bg-base: #f7b731;
+}
+
 body{
-    background-image: url("./assets/sprinkle.svg");
+    background-image: var(--bg-image);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;

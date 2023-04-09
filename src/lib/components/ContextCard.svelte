@@ -10,25 +10,24 @@
     }
 </script>
 
-<div class="card context-card" on:click={gotoContext} style="cursor: pointer;">
-    <!-- Dummy name and link -->
+<!-- <div class="card context-card" on:click={gotoContext} style="cursor: pointer;">
+    Dummy name and link
     <h3>Context Name</h3>
+</div> -->
+
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div
+    class="card bg-accent text-accent-content shadow-lg cursor-pointer"
+    on:click={gotoContext}
+>
+    <div class="card-body">
+        <h2 class="card-title">Card title!</h2>
+        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <div class="card-actions justify-end">
+            <!-- <button class="btn">Buy Now</button> -->
+        </div>
+    </div>
 </div>
 
 <style>
-    .context-card {
-        border: 1px solid #ccc;
-        height: 10rem;
-        border-radius: 5px;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: background-color 0.2s ease-in-out;
-    }
-
-    .context-card:hover {
-        background-color: #f5f5f5;
-        color: #000;
-    }
 </style>

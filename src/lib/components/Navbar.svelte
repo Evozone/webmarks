@@ -1,4 +1,6 @@
 <script>
+    import { onMount } from "svelte";
+
     // Components
     import LogoutButton from "../components/LogoutButton.svelte";
     import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
@@ -10,11 +12,24 @@
     // Params
     export let contextName = null;
 
-    // Give navbar a solid background if scrolled down
+    // Javascript variables
     let scrolled = false;
-    window.onscroll = () => {
-        scrolled = window.scrollY > 0;
-    };
+
+    // On mount check if the page has an offset
+    // If the page has an offset, then add the scrolled class to the navbar
+    onMount(() => {
+        if (window.pageYOffset > 0) {
+            scrolled = true;
+        }
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 0) {
+                scrolled = true;
+            } else {
+                scrolled = false;
+            }
+        });
+    });
 </script>
 
 <div

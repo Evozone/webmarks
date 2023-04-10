@@ -58,7 +58,8 @@
 
 <style>
     .google-button {
-        background-color: #4285f4;
+        /* background-color: #4285f4; */
+        background-color: #669ffa;
         color: #fff;
         border: none;
         border-radius: 4px;

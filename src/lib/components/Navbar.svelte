@@ -1,5 +1,5 @@
 <script>
-    // Imports
+    // Components
     import LogoutButton from "../components/LogoutButton.svelte";
     import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
     import ProfilePopover from "./ProfilePopover.svelte";
@@ -8,7 +8,7 @@
     import { loggedInUser } from "../../stores";
 
     // Params
-    export let path;
+    export let contextName = null;
 
     // Give navbar a solid background if scrolled down
     let scrolled = false;
@@ -21,8 +21,29 @@
     class="navbar flex flex-row items-center justify-between p-2 sticky top-0 z-10"
     class:scrolled
 >
+    <!-- Brand -->
     <h1 class="text-2xl font-bold text-content-base">WebMarks</h1>
 
+    <!-- Breadcrumbs -->
+    <div
+        class="text-sm breadcrumbs absolute left-1/2 transform -translate-x-1/2"
+    >
+        <ul>
+            <!-- Show Dashboard and Context (if in a context) -->
+            <li>
+                <a href="/dashboard" class="text-content-base">Dashboard</a>
+            </li>
+            {#if contextName}
+                <li>
+                    <a href="/context/{contextName}" class="text-content-base">
+                        {contextName}
+                    </a>
+                </li>
+            {/if}
+        </ul>
+    </div>
+
+    <!-- User info -->
     <div class="flex flex-row items-center justify-center space-x-4">
         <!-- User Name -->
         {#if $loggedInUser && $loggedInUser.name}

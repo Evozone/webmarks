@@ -4,7 +4,7 @@
     import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
     import { collection, addDoc } from "firebase/firestore";
     import { auth, db } from "../../firebase";
-    import { loggedInUser } from "../../stores";
+    import { loggedInUser, showLoading } from "../../stores";
     import jwt_decode from "jwt-decode";
 
     // JavaScript
@@ -12,6 +12,8 @@
 
     // This function logs in the user using the Google authentication provider
     const loginWithGoogle = async () => {
+        // Show loading screen
+        $showLoading = true;
         try {
             const result = await signInWithPopup(auth, provider);
             // @ts-ignore
@@ -31,6 +33,9 @@
 
             // Redirect to dashboard
             navigate("/dashboard");
+
+            // Hide loading screen
+            $showLoading = false;
         } catch (error) {
             console.error("Error while logging in with Google:", error);
         }

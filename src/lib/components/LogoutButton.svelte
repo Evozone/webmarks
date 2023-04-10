@@ -2,7 +2,12 @@
     // Imports
     import { navigate } from "svelte-routing";
     import { auth } from "../../firebase";
-    import { loggedInUser } from "../../stores";
+
+    // Stores
+    import { loggedInUser, showLoading } from "../../stores";
+
+    // Components
+    import Loading from "./Loading.svelte";
 
     // Icons
     import Icon from "svelte-icons-pack/Icon.svelte";
@@ -10,11 +15,13 @@
 
     // This function logs out the user
     const logout = async () => {
+        $showLoading = true;
         try {
             await auth.signOut();
             await localStorage.removeItem("webmarksToken");
             loggedInUser.set(null);
             navigate("/");
+            $showLoading = false;
         } catch (error) {
             console.error("Error while logging out:", error);
         }

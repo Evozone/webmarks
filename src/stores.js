@@ -26,3 +26,5 @@ export const createloggedInUser = () => {
 export const loggedInUser = createloggedInUser();
 
 export const selectedTheme = writable("default");
+
+export const showLoading = writable(false);

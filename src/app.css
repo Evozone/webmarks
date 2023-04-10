@@ -15,17 +15,22 @@ html[data-theme="light"] {
 
 html[data-theme="default"] {
     --bg-image: url("./assets/sprinkle-default.svg");
-    --bg-base: #f0abfc;
+    --bg-base: #3b82f6;
 }
 
 html[data-theme="cupcake"] {
     --bg-image: url("./assets/sprinkle-default.svg");
-    --bg-base: #f72585;
+    --bg-base: #65C3C8;
 }
 
 html[data-theme="lemonade"] {
     --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #f7b731;
+}
+
+html[data-theme="forest"] {
+    --bg-image: url("./assets/sprinkle-default.svg");
+    --bg-base: #1EB854;
 }
 
 body{

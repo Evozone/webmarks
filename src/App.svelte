@@ -8,7 +8,11 @@
     import Dashboard from "./lib/routes/Dashboard.svelte";
     import Home from "./lib/routes/Home.svelte";
 
-    import { loggedInUser } from "./stores";
+    // Stores
+    import { loggedInUser, showLoading } from "./stores";
+
+    // Components
+    import Loading from "./lib/components/Loading.svelte";
 
     onMount(() => {
         // Check if user is logged in
@@ -26,6 +30,10 @@
         }
     });
 </script>
+
+{#if $showLoading}
+    <Loading />
+{/if}
 
 <Router>
     <Route path="/">

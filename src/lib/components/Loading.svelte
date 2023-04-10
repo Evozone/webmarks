@@ -1,11 +1,9 @@
 <script>
-    export let message = "Loading...";
 </script>
 
-<div class="overlay">
+<div class="overlay grid place-items-center">
     <div class="loading">
         <img src="src\assets\loading.svg" alt="Loading" />
-        <p>{message}</p>
     </div>
 </div>
 
@@ -17,8 +15,6 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        z-index: 100;
     }
 </style>

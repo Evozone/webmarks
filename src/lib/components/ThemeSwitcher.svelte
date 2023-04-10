@@ -43,6 +43,11 @@
             icon: "🍋",
             displayName: "Lemonade",
         },
+        forest: {
+            name: "forest",
+            icon: "🌲",
+            displayName: "Forest",
+        },
     };
 
     const handleChangeTheme = (e) => {

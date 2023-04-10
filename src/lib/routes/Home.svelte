@@ -21,8 +21,10 @@
 
 <main class="min-h-screen flex items-center justify-center">
     <div class="grid grid-cols-1 gap-4 p-4 max-w-2xl">
-        <h1>Welcome to WebMarks</h1>
-        <p>
+        <h1 class="text-3xl font-bold text-center mb-3 text-white">
+            Welcome to WebMarks
+        </h1>
+        <p class="text-2xl font-bold text-center mb-3 text-accent">
             This is a simple SvelteKit app that uses Firebase for authentication
             and database.
         </p>
@@ -35,4 +37,9 @@
 </main>
 
 <style>
+    main {
+        background-image: url("../../assets/Sprinkle.svg");
+        background-repeat: repeat;
+        background-size: cover;
+    }
 </style>

@@ -15,7 +15,7 @@
 
     // Icons
     import Icon from "svelte-icons-pack";
-    import FiPlusCircle from "svelte-icons-pack/fi/FiPlusCircle";
+    import BsFolderPlus from "svelte-icons-pack/bs/BsFolderPlus";
 
     // Stores
     import { loggedInUser, showLoading } from "../../stores";
@@ -76,18 +76,16 @@
         class="border-dashed border-4 p-8 mx-auto grid grid-cols-3 gap-4 rounded-xl"
     >
         <!-- Create a context -->
-        <div
-            class="w-full border-2 p-7 mx-auto flex flex-row items-center rounded-xl"
-        >
+        <div class="w-full border-2 p-5 mx-auto flex items-center rounded-xl">
             <!-- Bind input fields to values -->
             <input
                 type="text"
-                class="input input-bordered w-full max-w-xs mb-6 p-2"
-                placeholder="Create a new Context"
+                class="input input-primary w-full max-w-xs"
+                placeholder="Add a new Context"
                 bind:value={contextName}
             />
             <button class="btn btn-primary ml-3" on:click={createContext}>
-                <Icon src={FiPlusCircle} />
+                <Icon src={BsFolderPlus} size="24" />
             </button>
         </div>
         <!-- End:Create a context -->

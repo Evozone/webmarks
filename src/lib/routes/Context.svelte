@@ -1,5 +1,6 @@
 <script>
     // Imports
+    import { onMount } from "svelte";
     import {
         doc,
         setDoc,
@@ -26,7 +27,8 @@
     let createWebmarkURL = "";
     let createWebmarkNote = "";
 
-    let contextName = "Untitled Context";
+    let contextName = "";
+    let userWebmarks = [];
 
     // Helper function to get the document related to the context
     async function getDocument() {
@@ -35,6 +37,7 @@
 
         if (docSnap.exists()) {
             contextName = docSnap.data().name;
+            userWebmarks = docSnap.data().webmarks;
         } else {
             // docSnap.data() will be undefined in this case
             console.log("No such document!");
@@ -64,7 +67,12 @@
 
         getDocument();
     }
-    getDocument();
+
+    onMount(async () => {
+        $showLoading = true;
+        await getDocument();
+        $showLoading = false;
+    });
 </script>
 
 <Navbar {contextName} />
@@ -77,36 +85,37 @@
     <div
         class="border-dashed border-4 p-8 mx-auto grid grid-cols-3 gap-4 rounded-xl"
     >
-        {#each Array(3).fill(1) as _, i}
-            <WebMark />
+        {#each userWebmarks as webmark}
+            <WebMark {...webmark} />
         {/each}
 
         <!-- Create a WebMark Area -->
         <div
-            class="w-full border-2 p-7 mx-auto flex flex-col items-center rounded-xl"
+            class="col-span-3 border-2 border-accent p-7 mx-auto mt-3 flex flex-col items-center rounded-xl"
         >
-            <!-- Bind input fields to values -->
-            <input
-                type="text"
-                bind:value={createWebmarkTitle}
-                class=" w-1/3 border-2 border-gray-300 p-2 rounded-lg outline-none"
-                placeholder="Title"
-            />
-            <input
-                type="text"
-                bind:value={createWebmarkURL}
-                class="w-1/3 border-2 border-gray-300 p-2 rounded-lg outline-none"
-                placeholder="URL"
-            />
-            <textarea
-                bind:value={createWebmarkNote}
-                class="w-1/3 border-2 border-gray-300 p-2 rounded-lg outline-none"
-                placeholder="Note"
-            />
-            <button
-                on:click={createWebmark}
-                class="ml-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
+            <h2 class="text-2xl font-bold mb-4">Create a WebMark</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Bind input fields to values -->
+                <input
+                    type="text"
+                    bind:value={createWebmarkTitle}
+                    class="input input-bordered input-accent w-full max-w-xs"
+                    placeholder="Title"
+                />
+                <textarea
+                    bind:value={createWebmarkNote}
+                    class="textarea textarea-accent row-span-2 w-full max-w-xs"
+                    placeholder="Note"
+                />
+                <input
+                    type="text"
+                    bind:value={createWebmarkURL}
+                    class="input input-bordered input-accent w-full max-w-xs"
+                    placeholder="URL"
+                />
+            </div>
+
+            <button on:click={createWebmark} class="btn btn-secondary mt-4">
                 Create
             </button>
         </div>

@@ -12,6 +12,7 @@
   import AiOutlineDelete from "svelte-icons-pack/ai/AiOutlineDelete";
 
   import { db } from "../../firebase";
+  import { showLoading } from "../../stores";
 
   // Exports
   export let location;
@@ -24,9 +25,12 @@
   }
 
   async function deleteContext() {
+    const choice = confirm("Are you sure you want to delete this context?");
+    if (!choice) return;
+    $showLoading = true;
     await deleteDoc(doc(db, "contexts", `${id}`));
+    $showLoading = false;
     await getUserContexts();
-    alert("Context deleted");
   }
 </script>
 

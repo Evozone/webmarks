@@ -31,8 +31,11 @@
   let userContexts = [];
 
   async function createContext() {
+    if (contextName === "") {
+      alert("Please enter a name for the context");
+      return;
+    }
     const id = new Date().getTime();
-
     const data = {
       name: contextName,
       ownerId: $loggedInUser.user_id,

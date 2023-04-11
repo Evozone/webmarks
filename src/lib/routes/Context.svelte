@@ -4,7 +4,6 @@
   import { marked } from "marked";
   import {
     doc,
-    setDoc,
     getDoc,
     Timestamp,
     updateDoc,
@@ -48,6 +47,10 @@
   }
 
   async function createWebmark() {
+    if (createWebmarkTitle === "" || createWebmarkURL === "") {
+      alert("Please enter a title and URL for the webmark");
+      return;
+    }
     $showLoading = true;
 
     const webmarkTitle = createWebmarkTitle;
@@ -70,7 +73,7 @@
       webmarks: arrayUnion(data),
     });
 
-    getDocument();
+    await getDocument();
 
     // clear value of input fiels
     createWebmarkTitle = "";

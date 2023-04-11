@@ -6,6 +6,7 @@
 
   import { doc, updateDoc, arrayRemove } from "firebase/firestore";
   import { db } from "../../firebase";
+  import { showLoading } from "../../stores";
 
   export let webmark;
   export let createdAt;
@@ -16,7 +17,6 @@
   export let ownerId;
   export let ownerName;
   export let ownerPicture;
-  export let webmarkId;
   export let contextId;
   export let getDocument;
   // Javascript variables
@@ -75,10 +75,12 @@
     const response = confirm("Are you sure you want to delete this webmark?");
     if (response) {
       // Delete the webmark
+      $showLoading = true;
       const dbRef = doc(db, "contexts", `${contextId}`);
       await updateDoc(dbRef, {
         webmarks: arrayRemove(webmark),
       });
+      $showLoading = false;
       await getDocument();
     }
   }

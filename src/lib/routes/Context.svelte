@@ -1,6 +1,7 @@
 <script>
     // Imports
     import { onMount } from "svelte";
+    import { marked } from "marked";
     import {
         doc,
         setDoc,
@@ -26,6 +27,7 @@
     let createWebmarkTitle = "";
     let createWebmarkURL = "";
     let createWebmarkNote = "";
+    // TODO: Chinu save \n in createWebmarkNote too
 
     let contextName = "";
     let userWebmarks = [];
@@ -91,28 +93,37 @@
 
         <!-- Create a WebMark Area -->
         <div
-            class="col-span-3 border-2 border-accent p-7 mx-auto mt-3 flex flex-col items-center rounded-xl"
+            class="w-full col-span-3 border-2 border-accent p-7 mx-auto mt-3 flex flex-col rounded-xl"
         >
-            <h2 class="text-2xl font-bold mb-4">Create a WebMark</h2>
-            <div class="grid grid-cols-2 gap-4">
+            <h2 class="text-2xl font-bold mb-4">Add a new Webmark...</h2>
+            <div class="w-full grid grid-cols-2 gap-4">
                 <!-- Bind input fields to values -->
                 <input
                     type="text"
                     bind:value={createWebmarkTitle}
-                    class="input input-bordered input-accent w-full max-w-xs"
+                    class="input input-bordered input-accent w-full"
                     placeholder="Title"
-                />
-                <textarea
-                    bind:value={createWebmarkNote}
-                    class="textarea textarea-accent row-span-2 w-full max-w-xs"
-                    placeholder="Note"
                 />
                 <input
                     type="text"
                     bind:value={createWebmarkURL}
-                    class="input input-bordered input-accent w-full max-w-xs"
+                    class="input input-bordered input-accent w-full"
                     placeholder="URL"
                 />
+                <textarea
+                    bind:value={createWebmarkNote}
+                    class="textarea textarea-accent w-full"
+                    placeholder="Note"
+                />
+                <div
+                    class="prose prose-sm prose-accent border-2 border-accent p-3 rounded-xl w-full"
+                >
+                    {#if createWebmarkNote}
+                        {@html marked(createWebmarkNote)}
+                    {:else}
+                        <p>Preview</p>
+                    {/if}
+                </div>
             </div>
 
             <button on:click={createWebmark} class="btn btn-secondary mt-4">

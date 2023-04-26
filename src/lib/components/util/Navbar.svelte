@@ -2,12 +2,12 @@
     import { onMount } from "svelte";
 
     // Components
-    import LogoutButton from "../components/LogoutButton.svelte";
-    import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
+    import LogoutButton from "../auth/LogoutButton.svelte";
+    import ThemeSwitcher from "./ThemeSwitcher.svelte";
     import ProfilePopover from "./ProfilePopover.svelte";
 
     // Stores
-    import { loggedInUser } from "../../stores";
+    import { loggedInUser } from "../../../stores";
 
     // Params
     export let contextName = null;

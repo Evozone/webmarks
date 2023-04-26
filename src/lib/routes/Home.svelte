@@ -5,8 +5,8 @@
     import { loggedInUser } from "../../stores";
 
     // Components
-    import GoogleLoginButton from "../components/GoogleLoginButton.svelte";
-    import ThemeSwitcher from "../components/ThemeSwitcher.svelte";
+    import GoogleLoginButton from "../components/auth/GoogleLoginButton.svelte";
+    import ThemeSwitcher from "../components/util/ThemeSwitcher.svelte";
 
     // Exports
     export let location;

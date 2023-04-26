@@ -13,6 +13,10 @@
     import { loggedInUser, showLoading } from "../../stores";
     import jwt_decode from "jwt-decode";
 
+    // Icons
+    import Icon from "svelte-icons-pack/Icon.svelte";
+    import AiOutlineGoogle from "svelte-icons-pack/ai/AiOutlineGoogle";
+
     // JavaScript
     const provider = new GoogleAuthProvider();
 
@@ -84,20 +88,10 @@
     };
 </script>
 
-<button on:click={loginWithGoogle} class="google-button"
-    >Login with Google</button
->
+<button on:click={loginWithGoogle} class="google-button btn btn-primary">
+    <Icon src={AiOutlineGoogle} size="24" color="white" />
+    &nbsp; Login with Google
+</button>
 
 <style>
-    .google-button {
-        /* background-color: #4285f4; */
-        background-color: #669ffa;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 10px 20px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-    }
 </style>

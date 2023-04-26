@@ -33,7 +33,7 @@
 </script>
 
 <div
-    class="navbar flex flex-row items-center justify-between p-2 sticky top-0 z-10"
+    class="navbar flex flex-row items-center justify-between p-2 sticky top-0 z-10 text-white"
     class:scrolled
 >
     <!-- Brand -->
@@ -101,8 +101,12 @@
 </div>
 
 <style>
+    .navbar {
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: background-color 0.2s ease-in-out;
+    }
     .scrolled {
-        background-color: var(--bg-base);
+        background-color: rgba(0, 0, 0, 0.9);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 </style>

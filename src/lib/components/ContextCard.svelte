@@ -35,7 +35,7 @@
 </script>
 
 <div
-    class="card bg-base-200 border-primary border-2 hover:bg-base-300 cursor-pointer"
+    class="card bg-base-200 hover:bg-base-300 cursor-pointer rounded-md"
     on:click={gotoContext}
     on:keypress={gotoContext}
 >
@@ -46,12 +46,38 @@
         </h2>
     </div>
     <button
-        class="btn btn-error ml-3 absolute top-1 right-1 btn-xs hover:scale-110"
+        class="btn btn-square btn-ghost absolute top-1 right-1 btn-xs hover:scale-110"
         on:click|stopPropagation={deleteContext}
     >
-        <Icon src={AiOutlineDelete} size="22" />
+        <Icon src={AiOutlineDelete} size="18" color="red" />
     </button>
 </div>
 
 <style>
+    .btn-xs {
+        animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes shake {
+        10%,
+        90% {
+            transform: translate3d(-1px, 0, 0);
+        }
+
+        20%,
+        80% {
+            transform: translate3d(2px, 0, 0);
+        }
+
+        30%,
+        50%,
+        70% {
+            transform: translate3d(-4px, 0, 0);
+        }
+
+        40%,
+        60% {
+            transform: translate3d(4px, 0, 0);
+        }
+    }
 </style>

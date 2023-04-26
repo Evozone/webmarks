@@ -6,9 +6,6 @@
     // Stores
     import { loggedInUser, showLoading } from "../../stores";
 
-    // Components
-    import Loading from "./Loading.svelte";
-
     // Icons
     import Icon from "svelte-icons-pack/Icon.svelte";
     import FiLogOut from "svelte-icons-pack/fi/FiLogOut";

@@ -5,6 +5,11 @@
     // Icons
     import Icon from "svelte-icons-pack/Icon.svelte";
     import BsFlower1 from "svelte-icons-pack/bs/BsFlower1";
+    import BsSunFill from "svelte-icons-pack/bs/BsSunFill";
+    import BsMoonFill from "svelte-icons-pack/bs/BsMoonFill";
+    import RiOthersCake3Fill from "svelte-icons-pack/ri/RiOthersCake3Fill";
+    import BiSolidLemon from "svelte-icons-pack/bi/BiSolidLemon";
+    import BsTreeFill from "svelte-icons-pack/bs/BsTreeFill";
 
     // Store
     import { selectedTheme } from "../../stores";
@@ -20,33 +25,33 @@
     const themes = {
         default: {
             name: "default",
-            icon: "🌼",
             displayName: "Default",
+            icon: BsFlower1,
         },
         light: {
             name: "light",
-            icon: "🌞",
             displayName: "Light",
+            icon: BsSunFill,
         },
         dark: {
             name: "dark",
-            icon: "🌙",
             displayName: "Dark",
+            icon: BsMoonFill,
         },
         cupcake: {
             name: "cupcake",
-            icon: "🧁",
             displayName: "Cupcake",
+            icon: RiOthersCake3Fill,
         },
         lemonade: {
             name: "lemonade",
-            icon: "🍋",
             displayName: "Lemonade",
+            icon: BiSolidLemon,
         },
         forest: {
             name: "forest",
-            icon: "🌲",
             displayName: "Forest",
+            icon: BsTreeFill,
         },
     };
 
@@ -56,11 +61,11 @@
     };
 </script>
 
-<div class="flex flex-row items-center">
-    <div class="p-2">{themes[theme].icon}</div>
+<div class="flex flex-row items-center justify-center">
+    <Icon src={themes[theme].icon} size="24" color="dark" />
 
     <!-- Select theme -->
-    <div class="grow">
+    <div class="grow ml-3">
         <select
             data-choose-theme
             class="select select-primary w-full"

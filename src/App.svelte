@@ -2,7 +2,6 @@
     import { Router, Route } from "svelte-routing";
     import { onMount } from "svelte";
     import ProtectedRoute from "./lib/ProtectedRoute.svelte";
-    import jwt_decode from "jwt-decode";
     // Routes
     import Context from "./lib/routes/Context.svelte";
     import Dashboard from "./lib/routes/Dashboard.svelte";
@@ -16,15 +15,18 @@
 
     onMount(() => {
         // Check if user is logged in
-        const token = window.localStorage.getItem("webmarksToken");
-        loggedInUser.login(token);
+        // Check if tokenis present in local storage
+        const token = window.localStorage.getItem("webmarksToken") || null;
+        if (token) {
+            loggedInUser.login(token);
+        }
 
         // Don't redirect to any page outside of /, /dashboard, /context/:id
         const path = window.location.pathname;
         if (
             path !== "/" &&
             path !== "/dashboard" &&
-            !path.startsWith("/context/")
+            path.split("/")[1] !== "context"
         ) {
             window.location.pathname = "/";
         }

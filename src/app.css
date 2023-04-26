@@ -4,39 +4,39 @@
 
 /* Theme css variables */
 html[data-theme="dark"] {
-    --bg-image: url("./assets/sprinkle-dark.svg");
     --bg-base: #1f2937;
+    --bg-image: url("./assets/dark.jpg");
 }
 
 html[data-theme="light"] {
-    --bg-image: url("./assets/sprinkle-light.svg");
     --bg-base: #f9fafb;
+    --bg-image: url("./assets/light.jpg");
 }
 
 html[data-theme="default"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #3b82f6;
+    --bg-image: url("./assets/lavender.jpg");
 }
 
 html[data-theme="cupcake"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #65C3C8;
+    --bg-image: url("./assets/cupcakes.jpg");
 }
 
 html[data-theme="lemonade"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #f7b731;
+    --bg-image: url("./assets/lemons.jpg");
 }
 
 html[data-theme="forest"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #1EB854;
+    --bg-image: url("./assets/clover-leaves.jpg");
 }
 
 body{
-    background-image: var(--bg-image);
-    background-repeat: no-repeat;
+    background: var(--bg-image);
     background-size: cover;
+    background-position: center;
     min-height: 100vh;
     height: fit-content;
 }

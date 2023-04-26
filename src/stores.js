@@ -22,7 +22,8 @@ export const createloggedInUser = () => {
     };
 };
 
-// Create the store
+// Create the store 
+// Store contents [loggedInUser, selectedTheme, showLoading]
 export const loggedInUser = createloggedInUser();
 
 export const selectedTheme = writable("default");

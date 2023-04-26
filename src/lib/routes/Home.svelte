@@ -27,11 +27,7 @@
         <ThemeSwitcher />
     </div>
     <div class="grid grid-cols-2 gap-8 p-16 w-full min-h-screen">
-        <img
-            src="src\assets\logo.svg"
-            alt="WebMarks Logo"
-            class="row-span-2 logo"
-        />
+        <img src="/logo.svg" alt="WebMarks Logo" class="row-span-2 logo" />
         <h2
             class="text-4xl font-bold text-center grid place-items-center text-white"
         >

@@ -4,37 +4,31 @@
 
 /* Theme css variables */
 html[data-theme="dark"] {
-    --bg-image: url("./assets/sprinkle-dark.svg");
     --bg-base: #1f2937;
 }
 
 html[data-theme="light"] {
-    --bg-image: url("./assets/sprinkle-light.svg");
     --bg-base: #f9fafb;
 }
 
 html[data-theme="default"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #3b82f6;
 }
 
 html[data-theme="cupcake"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #65C3C8;
 }
 
 html[data-theme="lemonade"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #f7b731;
 }
 
 html[data-theme="forest"] {
-    --bg-image: url("./assets/sprinkle-default.svg");
     --bg-base: #1EB854;
 }
 
 body{
-    background-image: var(--bg-image);
+    background-color: var(--bg-base);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;

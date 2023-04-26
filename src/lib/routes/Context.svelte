@@ -102,7 +102,8 @@
         {/each}
 
         <!-- Create a WebMark Area -->
-        <div
+        <form
+            on:submit|preventDefault={createWebmark}
             class="w-full col-span-3 border-2 border-accent p-7 mx-auto mt-3 flex flex-col rounded-xl"
         >
             <h2 class="text-2xl mb-4 text-secondary">Add a new Webmark...</h2>
@@ -113,21 +114,21 @@
                     bind:value={createWebmarkTitle}
                     class="input input-bordered input-accent w-full"
                     placeholder="Title"
+                    required
                 />
                 <input
                     type="text"
                     bind:value={createWebmarkURL}
                     class="input input-bordered input-accent w-full"
                     placeholder="URL"
+                    required
                 />
                 <textarea
                     bind:value={createWebmarkNote}
                     class="textarea textarea-accent w-full"
-                    placeholder="Note"
+                    placeholder="Note (optional, supports Markdown)"
                 />
-                <div
-                    class="prose prose-sm bg-white border-primary p-3 rounded-xl w-full shadow-lg"
-                >
+                <div class="prose prose-sm bg-white p-3 rounded-xl shadow-lg">
                     {#if createWebmarkNote}
                         {@html marked(createWebmarkNote)}
                     {:else}
@@ -136,11 +137,11 @@
                 </div>
             </div>
             <div>
-                <button on:click={createWebmark} class="btn btn-secondary mt-4">
+                <button type="submit" class="btn btn-secondary mt-4">
                     Create
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </main>
 

@@ -2,13 +2,7 @@
     // Imports
     import { navigate } from "svelte-routing";
     import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-    import {
-        doc,
-        getDoc,
-        setDoc,
-        addDoc,
-        collection,
-    } from "firebase/firestore";
+    import { doc, getDoc, setDoc } from "firebase/firestore";
     import { auth, db } from "../../../firebase";
     import { loggedInUser, showLoading } from "../../../stores";
     import jwt_decode from "jwt-decode";
@@ -60,7 +54,7 @@
 
             // If user does not exist, create it
             if (!docSnap.exists()) {
-                await addDoc(collection(db, "users"), {
+                await setDoc(doc(db, "users", user.user_id), {
                     user_id: user.user_id,
                     email: user.email,
                     name: user.name,

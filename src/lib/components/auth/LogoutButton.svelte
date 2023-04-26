@@ -1,10 +1,10 @@
 <script>
     // Imports
     import { navigate } from "svelte-routing";
-    import { auth } from "../../firebase";
+    import { auth } from "../../../firebase";
 
     // Stores
-    import { loggedInUser, showLoading } from "../../stores";
+    import { loggedInUser, showLoading } from "../../../stores";
 
     // Icons
     import Icon from "svelte-icons-pack/Icon.svelte";

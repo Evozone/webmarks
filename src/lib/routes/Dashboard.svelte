@@ -22,7 +22,7 @@
 
     // Components
     import ContextCard from "../components/ContextCard.svelte";
-    import Navbar from "../components/Navbar.svelte";
+    import Navbar from "../components/util/Navbar.svelte";
 
     export let id;
     export let location;
@@ -82,35 +82,32 @@
         Dashboard
     </h1>
 
-    <div class="min-h-screen p-10 m-5 rounded-xl frost">
-        <!-- Grid of contexts -->
-        <div class="p-8 mx-auto grid grid-cols-3 gap-4 rounded-xl">
-            <!-- Create a context -->
-            <div
-                class="w-full border-2 p-3 mx-auto flex items-center rounded-xl"
-            >
-                <!-- Bind input fields to values -->
-                <input
-                    type="text"
-                    class="input input-primary w-full max-w-xs"
-                    placeholder="Add a new Context"
-                    bind:value={contextName}
-                />
-                <button class="btn btn-primary ml-3" on:click={createContext}>
-                    <Icon src={BsFolderPlus} size="24" />
-                </button>
-            </div>
-            <!-- End:Create a context -->
-            <!-- User contexts -->
-            {#each userContexts as context}
-                <ContextCard
-                    location={`/context/${context.id}`}
-                    name={context.name}
-                    id={context.id}
-                    {getUserContexts}
-                />
-            {/each}
+    <div class="min-h-screen p-10 m-5 rounded-xl frost grid grid-cols-3 gap-4">
+        <!-- Create a context -->
+        <div
+            class="w-full h-20 border-2 p-3 mx-auto flex items-center rounded-xl"
+        >
+            <!-- Bind input fields to values -->
+            <input
+                type="text"
+                class="input input-primary w-full max-w-xs"
+                placeholder="Add a new Context"
+                bind:value={contextName}
+            />
+            <button class="btn btn-primary ml-3" on:click={createContext}>
+                <Icon src={BsFolderPlus} size="24" />
+            </button>
         </div>
+        <!-- End:Create a context -->
+        <!-- User contexts -->
+        {#each userContexts as context}
+            <ContextCard
+                location={`/context/${context.id}`}
+                name={context.name}
+                id={context.id}
+                {getUserContexts}
+            />
+        {/each}
     </div>
 </main>
 

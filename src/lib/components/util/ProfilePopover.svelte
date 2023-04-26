@@ -1,7 +1,7 @@
 <script>
     // components
     import ThemeSwitcher from "./ThemeSwitcher.svelte";
-    import LogoutButton from "./LogoutButton.svelte";
+    import LogoutButton from "../auth/LogoutButton.svelte";
 </script>
 
 <div

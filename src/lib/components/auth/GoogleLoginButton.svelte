@@ -9,8 +9,8 @@
         addDoc,
         collection,
     } from "firebase/firestore";
-    import { auth, db } from "../../firebase";
-    import { loggedInUser, showLoading } from "../../stores";
+    import { auth, db } from "../../../firebase";
+    import { loggedInUser, showLoading } from "../../../stores";
     import jwt_decode from "jwt-decode";
 
     // Icons

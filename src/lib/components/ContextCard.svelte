@@ -35,11 +35,11 @@
 </script>
 
 <div
-    class="card bg-base-200 hover:bg-base-300 cursor-pointer rounded-md"
+    class="card bg-base-200 hover:bg-base-300 cursor-pointer rounded-md h-20"
     on:click={gotoContext}
     on:keypress={gotoContext}
 >
-    <div class="card-body">
+    <div class="card-body p-4 flex flex-col justify-center">
         <h2 class="card-title">
             <Icon src={BsFolder} size="24" />
             {name}

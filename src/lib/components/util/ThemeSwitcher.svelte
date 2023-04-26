@@ -12,7 +12,7 @@
     import BsTreeFill from "svelte-icons-pack/bs/BsTreeFill";
 
     // Store
-    import { selectedTheme } from "../../stores";
+    import { selectedTheme } from "../../../stores";
 
     let theme = window.localStorage.getItem("theme") || "default";
 

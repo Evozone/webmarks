@@ -38,7 +38,7 @@
 >
     <!-- Brand -->
     <h1 class="text-2xl font-bold text-content-base">
-        <img src="..\src\assets\logo.svg" alt="Webmarks Logo" width="40" />
+        <img src="/logo.svg" alt="Webmarks Logo" width="40" />
         &nbsp; WebMarks
     </h1>
 

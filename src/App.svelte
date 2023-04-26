@@ -14,6 +14,11 @@
     import Loading from "./lib/components/util/Loading.svelte";
 
     onMount(() => {
+        // If theme not present in local storage, set it to default
+        const theme = window.localStorage.getItem("theme") || null;
+        if (!theme) {
+            window.localStorage.setItem("theme", "default");
+        }
         // Check if user is logged in
         // Check if tokenis present in local storage
         const token = window.localStorage.getItem("webmarksToken") || null;

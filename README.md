@@ -1,6 +1,13 @@
-# WebMarks
+# WebMarks : The smart way to keep your links organized and accessible from anywhere 🔖.
 
-This template should help get you started developing with Svelte in Vite.
+<br/>
+<br/>
+
+## Try out Link 
+[webmarks-fc5cd.web.app](https://webmarks-fc5cd.web.app/)
+
+<br/>
+<br/>
 
 ## Recommended IDE Setup
 

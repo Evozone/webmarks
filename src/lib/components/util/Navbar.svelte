@@ -33,27 +33,25 @@
 </script>
 
 <div
-    class="navbar flex flex-row items-center justify-between p-2 sticky top-0 z-10 text-white"
+    class="navbar flex flex-row items-center bg-neutral justify-between p-2 sticky top-0 z-10"
     class:scrolled
 >
     <!-- Brand -->
-    <h1 class="text-2xl font-bold text-content-base">
+    <h1 class="text-2xl font-bold text-white">
         <img src="/logo.svg" alt="Webmarks Logo" width="40" />
         &nbsp; WebMarks
     </h1>
 
     <!-- Breadcrumbs -->
-    <div
-        class="text-sm breadcrumbs absolute left-1/2 transform -translate-x-1/2"
-    >
+    <div class="text-sm breadcrumbs text-primary-content absolute left-1/2 transform -translate-x-1/2" >
         <ul>
             <!-- Show Dashboard and Context (if in a context) -->
             <li>
-                <a href="/dashboard" class="text-content-base">Dashboard</a>
+                <a href="/dashboard" class="text-white">Dashboard</a>
             </li>
             {#if contextName}
                 <li>
-                    <a href="/context/{contextName}" class="text-content-base">
+                    <a href="/context/{contextName}" class="text-white">
                         {contextName}
                     </a>
                 </li>
@@ -65,21 +63,20 @@
     <div class="flex flex-row items-center justify-center space-x-4">
         <!-- User Name -->
         {#if $loggedInUser && $loggedInUser.name}
-            <p class="ml-4 text-lg font-semibold text-content-base">
+            <p class="ml-4 text-lg font-semibold text-white">
                 Welcome, {$loggedInUser.name}
             </p>
         {/if}
 
         <!-- Profile Pic dropdown -->
-        <div class="dropdown dropdown-end dropdown-hover">
+        <div class="dropdown dropdown-end">
             <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
             <label tabindex={0}>
                 <button class="btn btn-circle">
                     <div class="avatar placeholder">
-                        <div class="rounded-full ring ring-primary">
-                            <!-- If loggedInUser is present and the photoUrl is present, then show img else show placeholder -->
+                        <div class="rounded-full ring ring-primary h-10">
                             {#if $loggedInUser && $loggedInUser.picture}
-                                <img
+                                <img 
                                     src={$loggedInUser.picture}
                                     alt={$loggedInUser.name}
                                 />
@@ -100,16 +97,13 @@
                 <ProfilePopover />
             </div>
         </div>
+        <!-- Profile Pic -->
     </div>
 </div>
 
 <style>
-    .navbar {
-        background-color: rgba(0, 0, 0, 0.5);
-        transition: background-color 0.2s ease-in-out;
-    }
-    .scrolled {
-        background-color: rgba(0, 0, 0, 0.9);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* change the color of all children of breadcrumbs */
+    .breadcrumbs * {
+        color: #fff;
     }
 </style>

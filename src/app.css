@@ -2,40 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme css variables */
-html[data-theme="dark"] {
-    --bg-base: #1f2937;
-    --bg-image: url("./assets/dark.jpg");
-}
-
-html[data-theme="light"] {
-    --bg-base: #f9fafb;
-    --bg-image: url("./assets/light.jpg");
-}
-
-html[data-theme="default"] {
-    --bg-base: #3b82f6;
-    --bg-image: url("./assets/lavender.jpg");
-}
-
-html[data-theme="cupcake"] {
-    --bg-base: #65C3C8;
-    --bg-image: url("./assets/cupcakes.jpg");
-}
-
-html[data-theme="lemonade"] {
-    --bg-base: #f7b731;
-    --bg-image: url("./assets/lemons.jpg");
-}
-
-html[data-theme="forest"] {
-    --bg-base: #1EB854;
-    --bg-image: url("./assets/clover-leaves.jpg");
-}
-
 body{
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    var(--bg-image);
+    background: url("./assets/background.svg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -59,4 +27,56 @@ body{
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.frost {
+    background: rgba(59, 59, 59, 0.3);
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .frost {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+}
+
+.input-error {
+    border-color: #e53e3e;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
 }

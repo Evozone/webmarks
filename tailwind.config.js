@@ -6,21 +6,14 @@ export default {
     },
     plugins: [require("@tailwindcss/typography"), require("daisyui")],
     daisyui: {
+        darkTheme: "night",
         themes: [
-            {
-                default: {
-                    primary: "#3b82f6",
-                    secondary: "#93c5fd",
-                    accent: "#f59e0b",
-                    neutral: "#f3f4f6",
-                    "base-100": "#e9d5ff",
-                },
-            },
-            "light",
-            "dark",
+            "corporate",
+            "night",
             "cupcake",
             "lemonade",
-            "forest",
+            "winter",
+            "dracula",
         ],
     },
 };

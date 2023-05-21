@@ -1,39 +1,35 @@
 <script>
-    import { Router, Route } from "svelte-routing";
-    import { onMount } from "svelte";
-    import ProtectedRoute from "./lib/ProtectedRoute.svelte";
+    import { Router, Route } from 'svelte-routing';
+    import { onMount } from 'svelte';
+    import ProtectedRoute from './lib/ProtectedRoute.svelte';
     // Routes
-    import Context from "./lib/routes/Context.svelte";
-    import Dashboard from "./lib/routes/Dashboard.svelte";
-    import Home from "./lib/routes/Home.svelte";
+    import Context from './lib/routes/Context.svelte';
+    import Dashboard from './lib/routes/Dashboard.svelte';
+    import Home from './lib/routes/Home.svelte';
 
     // Stores
-    import { loggedInUser, showLoading } from "./stores";
+    import { loggedInUser, showLoading } from './stores';
 
     // Components
-    import Loading from "./lib/components/util/Loading.svelte";
+    import Loading from './lib/components/util/Loading.svelte';
 
     onMount(() => {
         // If theme not present in local storage, set it to default
-        const theme = window.localStorage.getItem("theme") || null;
+        const theme = window.localStorage.getItem('theme') || null;
         if (!theme) {
-            window.localStorage.setItem("theme", "default");
+            window.localStorage.setItem('theme', 'default');
         }
         // Check if user is logged in
         // Check if tokenis present in local storage
-        const token = window.localStorage.getItem("webmarksToken") || null;
+        const token = window.localStorage.getItem('webmarksToken') || null;
         if (token) {
             loggedInUser.login(token);
         }
 
         // Don't redirect to any page outside of /, /dashboard, /context/:id
         const path = window.location.pathname;
-        if (
-            path !== "/" &&
-            path !== "/dashboard" &&
-            path.split("/")[1] !== "context"
-        ) {
-            window.location.pathname = "/";
+        if (path !== '/' && path !== '/dashboard' && path.split('/')[1] !== 'context') {
+            window.location.pathname = '/';
         }
     });
 </script>
@@ -55,18 +51,4 @@
 </Router>
 
 <style>
-    :global(body) {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-            "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-            "Helvetica Neue", sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    :global(code) {
-        font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-            monospace;
-    }
 </style>
